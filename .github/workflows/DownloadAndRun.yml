@@ -47,17 +47,16 @@ jobs:
           done
           ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/
           #cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/deps.*.json
-          exit 1
           
           for i in {1..5}
           do
             echo Vuelta $i
             $HOME/.xygeni/xygeni report-upload -n ${{ github.event.repository.name }}-$i \
-            -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/codetamper.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/compliance.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/iac.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/inventory.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/misconf.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/secrets.*.json \
-             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/suspectdeps.*.json
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/codetamper.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/compliance.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/iac.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/inventory.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/misconf.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/secrets.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/suspectdeps.*.json
           done
