@@ -39,13 +39,6 @@ jobs:
           echo ${{ github.event.repository.name }}
           declare -i loops="${{ github.event.client_payload.loops }}"
           echo LOOPS $loops
-          for i in {1..$loops}
-          do
-            echo Vuelta $i
-          done
-          for ((i=0; i<=loops; i++)); do
-           echo Vueltayy "$i"
-          done
 
           ls -l           
           
