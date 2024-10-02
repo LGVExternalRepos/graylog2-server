@@ -44,9 +44,8 @@ jobs:
           do
             echo Vuelta $i
           done
-          for i in {1..7}
-          do
-            echo Vueltaxx $i
+          for ((i=0; i<=number; i++)); do
+           echo Vueltayy "$i"
           done
 
           ls -l           
