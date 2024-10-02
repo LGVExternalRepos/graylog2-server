@@ -28,7 +28,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v6
         with:
           workflow: xygeni-labdev-tuneado.yml
-          name: reports
+          name: archive-bin
           
              
       - name: Uploading reports .. reports/LGVExternalRepos/deps.Mindustry
