@@ -35,25 +35,25 @@ jobs:
           echo Executing Xygeni scan ....  
           echo ${{ github.event.repository.name }}
           exit 1
-          ls -l /home/runner/work/Mindustry/Mindustry/reports
-          ls -l /home/runner/work/Mindustry/Mindustry/reports/*
-          for i in $(ls /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/)
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/*
+          for i in $(ls /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/)
           do
               echo $i
-              cp /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/$i "/home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/${i}.json"
+              cp /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/$i "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/${i}.json"
           done
-          ls -l /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/
-          #cat /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/deps.*.json
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/
+          #cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/deps.*.json
 
           for i in {1..5}
           do
             echo Vuelta $i
             $HOME/.xygeni/xygeni report-upload -n KKK$i \
-            -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/codetamper.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/compliance.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/iac.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/inventory.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/misconf.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/secrets.*.json \
-             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/suspectdeps.*.json
+            -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/codetamper.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/compliance.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/iac.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/inventory.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/misconf.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/secrets.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/suspectdeps.*.json
           done
