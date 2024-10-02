@@ -37,9 +37,10 @@ jobs:
         run: |
           echo Executing Xygeni scan ....  
           echo ${{ github.event.repository.name }}
+          declare -i number="${{ github.event.client_payload.loops }}"
           loops=${{ github.event.client_payload.loops }}
           echo LOOPS $loops
-          for i in {1..${loops}}
+          for i in {1..${number}}
           do
             echo Vuelta $i
           done
