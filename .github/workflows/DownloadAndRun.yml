@@ -38,17 +38,27 @@ jobs:
 
           ls -l 
           exit 1
+          $HOME/.xygeni/xygeni report-upload -n ${{ github.event.repository.name }}-$i \
+            -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/codetamper.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/compliance.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/iac.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/inventory.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/misconf.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/secrets.*.json \
+             -r /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/suspectdeps.*.json
+             
           
-          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports
-          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/*
-          for i in $(ls /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/)
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/*
+          for i in $(ls /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/)
           do
               echo $i
-              cp /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/$i "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/${i}.json"
+              cp /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/$i "/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/${i}.json"
           done
-          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/
-          #cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/deps.*.json
-
+          ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/
+          #cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/deps.*.json
+          exit 1
+          
           for i in {1..5}
           do
             echo Vuelta $i
