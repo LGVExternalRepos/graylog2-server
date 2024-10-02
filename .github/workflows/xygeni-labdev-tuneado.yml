@@ -34,7 +34,6 @@ jobs:
         run: |
           echo Executing Xygeni scan ....  
           echo ${{ github.event.repository.name }}
-          exit 1
           ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports
           ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/*
           for i in $(ls /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/reports/LGVExternalRepos/)
