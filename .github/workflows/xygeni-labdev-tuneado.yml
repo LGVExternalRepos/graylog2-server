@@ -1,0 +1,57 @@
+name: Xygeni Scan (tuneado)
+on:
+  workflow_dispatch:  # Allows manual triggering
+  # no push triggers
+  # no pull request triggers
+  # no schedule triggers
+
+jobs:
+  xygeni-scan:
+    name: Xygeni Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for better relevancy of analysis
+
+      - name: Xygeni-Scanner
+        uses: xygeni/xygeni-action@v3.2.0
+        id: Xygeni-Scanner
+        with:
+          xygeni_url: https://apidemo.xygeni.io/deps-doctor-service
+          token: ${{ secrets.XYGENI_TOKEN }}
+          gh_token: ${{ secrets.PAT_FOR_XYGENI_SCAN }}
+          command: scan --never-fail --include-collaborators -f json -o reports/${{ github.repository }} -n ${{ github.repository }}
+
+      - name: Archive building artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: archive-bin
+          path: |
+             reports
+             
+      - name: Uploading reports .. reports/LGVExternalRepos/deps.Mindustry
+        run: |
+          echo Executing Xygeni scan ....   
+          ls -l /home/runner/work/Mindustry/Mindustry/reports
+          ls -l /home/runner/work/Mindustry/Mindustry/reports/*
+          for i in $(ls /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/)
+          do
+              echo $i
+              cp /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/$i "/home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/${i}.json"
+          done
+          ls -l /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/
+          #cat /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/deps.*.json
+
+          for i in {1..5}
+          do
+            echo Vuelta $i
+            $HOME/.xygeni/xygeni report-upload -n KKK$i \
+            -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/codetamper.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/compliance.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/iac.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/inventory.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/misconf.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/secrets.*.json \
+             -r /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/suspectdeps.*.json
+          done
