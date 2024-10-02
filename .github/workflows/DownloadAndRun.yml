@@ -1,4 +1,4 @@
-name: DownloadAndRun
+name: Download And Run
 on:
   workflow_dispatch:  # Allows manual triggering
   # no push triggers
