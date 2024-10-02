@@ -56,7 +56,7 @@ jobs:
           ls -l /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/
           #cat /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/LGVExternalRepos/deps.*.json
           
-          for i in {1..5}
+          for i in {1..$loops}
           do
             echo Vuelta $i
             $HOME/.xygeni/xygeni report-upload -n ${{ github.event.repository.name }}-$i \
