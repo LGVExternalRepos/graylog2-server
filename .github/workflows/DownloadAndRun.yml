@@ -37,7 +37,6 @@ jobs:
         run: |
           echo Executing Xygeni scan ....  
           echo ${{ github.event.repository.name }}
-          exit 1
 
           ls -l           
           
