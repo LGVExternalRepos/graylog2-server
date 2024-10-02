@@ -32,7 +32,9 @@ jobs:
              
       - name: Uploading reports .. reports/LGVExternalRepos/deps.Mindustry
         run: |
-          echo Executing Xygeni scan ....   
+          echo Executing Xygeni scan ....  
+          echo ${{ github.event.repository.name }}
+          exit 1
           ls -l /home/runner/work/Mindustry/Mindustry/reports
           ls -l /home/runner/work/Mindustry/Mindustry/reports/*
           for i in $(ls /home/runner/work/Mindustry/Mindustry/reports/LGVExternalRepos/)
