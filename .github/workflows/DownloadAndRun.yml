@@ -40,9 +40,13 @@ jobs:
           declare -i number="${{ github.event.client_payload.loops }}"
           loops=${{ github.event.client_payload.loops }}
           echo LOOPS $loops
-          for i in {1..${number}}
+          for i in {1..$number}
           do
             echo Vuelta $i
+          done
+          for i in {1..7}
+          do
+            echo Vueltaxx $i
           done
 
           ls -l           
